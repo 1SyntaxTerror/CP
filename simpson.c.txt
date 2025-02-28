@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+double integralaSimpson(
+double a,
+double b,
+int nf,
+double (*pf)(double)
+)
+{
+    int ind = 1;
+    double sum = a + b;
+    double dx = (b-a)/nf;
+    for(float i = a + dx; i<b; i=i+dx)
+    {
+        if(ind % 2 == 0)
+        {
+            sum = sum + 2*((*pf)(i));
+            ind = 1;
+        }
+        else
+        {
+            sum = sum + 4*((*pf)(i));
+            ind = 0;
+        }
+        
+    }
+    
+    return (dx / 3) * sum;
+}
+
+double f(double x)
+{
+    return x*x;
+}
+
+int main()
+{
+    double x;
+    x = integralaSimpson(0, 1, 100, f);
+    
+    printf("%lf", x);
+    
+    
+}
