@@ -1,0 +1,36 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+double integralaDreptunghi(
+double a,
+double b,
+int nf,
+double (*pf)(double)
+)
+{
+    int ind = 1;
+    double sum = 0;
+    double dx = (b-a)/nf;
+    for(float i = a + dx; i<=b; i=i+dx)
+    {
+        sum += (*pf)((i + i - dx) / 2) * dx;
+    }
+    
+    return sum;
+}
+
+double f(double x)
+{
+    return x*x;
+}
+
+int main() {
+    double x;
+    x = integralaDreptunghi(0, 1, 100, f);
+    printf("%lf", x);
+}
