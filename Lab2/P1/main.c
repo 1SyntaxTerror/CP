@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 
 		if((nr = read(fd, buffer, 20))>0)
 		{
-			write(fout, buffer, 20);
+			write(fout, buffer, nr);
 		}
 		close(fd);
 	}
